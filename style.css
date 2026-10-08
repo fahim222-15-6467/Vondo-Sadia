@@ -1,0 +1,815 @@
+/* =====================================
+   BASIC
+===================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #030003;
+
+    color: white;
+
+}
+
+
+/* =====================================
+   START SCREEN
+===================================== */
+
+#startScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #350020 0%,
+            #10000e 45%,
+            #020002 100%
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
+}
+
+
+#startScreen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+.startContent {
+
+    animation:
+        startAppear
+        1.2s
+        ease;
+
+}
+
+
+.startHeart {
+
+    font-size: 70px;
+
+    animation:
+        heartBeat
+        1.2s
+        infinite;
+
+}
+
+
+.startContent h1 {
+
+    font-size: 32px;
+
+    margin:
+        15px
+        0
+        8px;
+
+    text-shadow:
+        0 0 15px #ff1493,
+        0 0 35px #ff1493;
+
+}
+
+
+.startContent p {
+
+    color: #e9cbdc;
+
+    margin-bottom: 25px;
+
+}
+
+
+#startBtn {
+
+    border: none;
+
+    padding:
+        14px
+        35px;
+
+    border-radius: 30px;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff1493,
+            #ff4fa3
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(255,20,147,.7);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+}
+
+
+#startBtn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 40px
+        rgba(255,20,147,.9);
+
+}
+
+
+@keyframes startAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.9);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================
+   PARTICLE INTRO
+===================================== */
+
+#particleIntro {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    z-index: 99999;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #26001f 0%,
+            #10000e 38%,
+            #050006 72%,
+            #000000 100%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+
+}
+
+
+#particleIntro.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+#particleIntro.finished {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+
+/* =====================================
+   CANVAS
+===================================== */
+
+#heartCanvas {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+}
+
+
+/* =====================================
+   SADIA TEXT
+===================================== */
+
+#sadiaText {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.35);
+
+    opacity: 0;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1.4s ease,
+        transform 1.4s ease;
+
+}
+
+
+#sadiaText.show {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+}
+
+
+#sadiaText span {
+
+    display: block;
+
+    font-size:
+        clamp(
+            55px,
+            14vw,
+            125px
+        );
+
+    font-weight: 700;
+
+    letter-spacing: 8px;
+
+    color: white;
+
+    text-align: center;
+
+    text-shadow:
+
+        0 0 5px white,
+
+        0 0 15px #ffb3d9,
+
+        0 0 30px #ff4fa3,
+
+        0 0 55px #ff1493,
+
+        0 0 90px #ff1493,
+
+        0 0 130px #ff007f;
+
+    animation:
+        nameGlow
+        1.8s
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+
+@keyframes nameGlow {
+
+    from {
+
+        text-shadow:
+
+            0 0 5px white,
+
+            0 0 15px #ffb3d9,
+
+            0 0 30px #ff4fa3,
+
+            0 0 50px #ff1493;
+
+    }
+
+    to {
+
+        text-shadow:
+
+            0 0 10px white,
+
+            0 0 25px #ffb3d9,
+
+            0 0 45px #ff4fa3,
+
+            0 0 80px #ff1493,
+
+            0 0 120px #ff007f;
+
+    }
+
+}
+
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
+
+#mainContent {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 15px;
+
+    opacity: 0;
+
+    transform: scale(.92);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            #310021,
+            #0b000c 55%,
+            #020003
+        );
+
+}
+
+
+#mainContent.show {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+}
+
+
+/* =====================================
+   PROPOSAL CARD
+===================================== */
+
+.proposalCard {
+
+    width:
+        min(
+            500px,
+            94%
+        );
+
+    padding:
+        35px 25px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,20,147,.05)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+
+        0 0 30px
+        rgba(255,20,147,.25),
+
+        inset 0 0 30px
+        rgba(255,255,255,.03);
+
+    backdrop-filter:
+        blur(12px);
+
+}
+
+
+/* =====================================
+   HEART
+===================================== */
+
+.smallHeart {
+
+    font-size: 45px;
+
+    animation:
+        heartBeat
+        1.2s
+        infinite;
+
+}
+
+
+@keyframes heartBeat {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.22);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+/* =====================================
+   TITLE
+===================================== */
+
+.proposalCard h1 {
+
+    margin:
+        10px 0 20px;
+
+    font-size: 50px;
+
+    color: #ff80ba;
+
+    text-shadow:
+
+        0 0 10px #ff1493,
+
+        0 0 30px #ff1493;
+
+}
+
+
+.proposalCard h2 {
+
+    line-height: 1.4;
+
+}
+
+
+/* =====================================
+   PHOTO
+===================================== */
+
+.herPhoto {
+
+    width: 220px;
+
+    height: 220px;
+
+    max-width: 70vw;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        4px solid
+        rgba(255,255,255,.8);
+
+    box-shadow:
+
+        0 0 15px #ff80ba,
+
+        0 0 35px #ff1493,
+
+        0 0 70px
+        rgba(255,20,147,.5);
+
+    animation:
+        photoGlow
+        2.5s
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+
+@keyframes photoGlow {
+
+    from {
+
+        box-shadow:
+
+            0 0 15px #ff80ba,
+
+            0 0 35px #ff1493;
+
+    }
+
+    to {
+
+        box-shadow:
+
+            0 0 25px #ffb3d9,
+
+            0 0 55px #ff1493,
+
+            0 0 90px
+            rgba(255,20,147,.6);
+
+    }
+
+}
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+.message {
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    color: #f5dce9;
+
+    margin:
+        20px 0 25px;
+
+}
+
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+button {
+
+    border: none;
+
+    padding:
+        13px 25px;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    color: white;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ff1493,
+            #ff4fa3
+        );
+
+    cursor: pointer;
+
+    box-shadow:
+
+        0 0 15px
+        rgba(255,20,147,.6);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+}
+
+
+button:hover {
+
+    transform: scale(1.07);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,20,147,.9);
+
+}
+
+
+button:active {
+
+    transform: scale(.96);
+
+}
+
+
+/* =====================================
+   FINAL MESSAGE
+===================================== */
+
+#finalMessage {
+
+    display: none;
+
+    margin-top: 30px;
+
+}
+
+
+#finalMessage.show {
+
+    display: block;
+
+    animation:
+        finalAppear
+        1s
+        ease;
+
+}
+
+
+.finalHeart {
+
+    font-size: 55px;
+
+    animation:
+        heartBeat
+        1.2s
+        infinite;
+
+}
+
+
+.finalMessage h2 {
+
+    font-size: 32px;
+
+    color: #ff80ba;
+
+}
+
+
+.finalMessage p {
+
+    font-size: 20px;
+
+    line-height: 1.6;
+
+}
+
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+@keyframes finalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+    .proposalCard {
+
+        padding:
+            30px 18px;
+
+    }
+
+
+    .proposalCard h1 {
+
+        font-size: 42px;
+
+    }
+
+
+    .herPhoto {
+
+        width: 190px;
+
+        height: 190px;
+
+    }
+
+
+    #sadiaText span {
+
+        font-size: 55px;
+
+        letter-spacing: 5px;
+
+    }
+
+}
